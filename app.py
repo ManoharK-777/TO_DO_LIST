@@ -269,7 +269,7 @@ st.markdown('<p style="color: #94a3b8; font-size: 18px; max-width: 600px; margin
 st.markdown('</div>', unsafe_allow_html=True)
 
 # Stats Row
-completed_count = len([t for t in st.session_state.tasks if t.completed])
+completed_count = len([t for t in st.session_state.tasks if t.get('completed', False)])
 total_count = len(st.session_state.tasks)
 pending_count = total_count - completed_count
 

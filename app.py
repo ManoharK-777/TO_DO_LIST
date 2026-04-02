@@ -246,102 +246,81 @@ def inject_custom_assets():
         <div class="blob-bg" style="bottom: -10%; right: -10%; animation: molten 8s infinite reverse; background: rgba(225, 29, 72, 0.08);"></div>
         
         <!-- FLAMETHROWER CURSOR INJECTION -->
-        <script>
-            if(!window.cursorInjected) {
-                window.cursorInjected = true;
-                setTimeout(() => {
-                    const canvas = document.createElement('div');
-                    canvas.id = 'flame-engine';
-                    canvas.style.position = 'fixed';
-                    canvas.style.inset = '0';
-                    canvas.style.pointerEvents = 'none';
-                    canvas.style.zIndex = '9999';
-                    document.body.appendChild(canvas);
+        <img src="dummy_cursor.gif" style="display:none;" onerror="
+            if (!window.flameEngineInjected) {
+                window.flameEngineInjected = true;
+                
+                const canvas = document.createElement('div');
+                canvas.id = 'flame-engine';
+                canvas.style.position = 'fixed';
+                canvas.style.inset = '0';
+                canvas.style.pointerEvents = 'none';
+                canvas.style.zIndex = '9999';
+                document.body.appendChild(canvas);
 
-                    const mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
-                    const lastMouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
-                    const particles = [];
-                    const MAX_PARTICLES = 25;
+                const mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+                const lastMouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+                const particles = [];
 
-                    // Custom Pointer
-                    const pointer = document.createElement('div');
-                    pointer.style.width = '12px';
-                    pointer.style.height = '12px';
-                    pointer.style.borderRadius = '50%';
-                    pointer.style.backgroundColor = 'white';
-                    pointer.style.position = 'fixed';
-                    pointer.style.zIndex = '10000';
-                    pointer.style.boxShadow = '0 0 15px #fff, 0 0 30px #dc2626';
-                    pointer.style.transform = 'translate(-50%, -50%)';
-                    pointer.style.pointerEvents = 'none';
-                    document.body.appendChild(pointer);
+                const pointer = document.createElement('div');
+                pointer.style.width = '12px';
+                pointer.style.height = '12px';
+                pointer.style.borderRadius = '50%';
+                pointer.style.backgroundColor = 'white';
+                pointer.style.position = 'fixed';
+                pointer.style.zIndex = '10000';
+                pointer.style.boxShadow = '0 0 15px #fff, 0 0 30px #dc2626';
+                pointer.style.transform = 'translate(-50%, -50%)';
+                pointer.style.pointerEvents = 'none';
+                document.body.appendChild(pointer);
 
-                    window.addEventListener('mousemove', (e) => {
-                        mouse.x = e.clientX;
-                        mouse.y = e.clientY;
-                        pointer.style.left = e.clientX + 'px';
-                        pointer.style.top = e.clientY + 'px';
-                    });
+                window.addEventListener('mousemove', (e) => {
+                    mouse.x = e.clientX;
+                    mouse.y = e.clientY;
+                    pointer.style.left = e.clientX + 'px';
+                    pointer.style.top = e.clientY + 'px';
+                });
 
-                    function createParticle() {
-                        const vx = mouse.x - lastMouse.x;
-                        const vy = mouse.y - lastMouse.y;
-                        
-                        if (Math.hypot(vx, vy) > 2) {
-                            for(let i=0; i<2; i++){
-                                particles.push({
-                                    x: mouse.x,
-                                    y: mouse.y,
-                                    vx: -vx * 1.5 + (Math.random() - 0.5) * 8,
-                                    vy: -vy * 1.5 + (Math.random() - 0.5) * 8,
-                                    life: 1.0,
-                                    size: Math.random() * 20 + 10,
-                                    color: Math.random() > 0.7 ? '#fff' : (Math.random() > 0.4 ? '#f59e0b' : '#dc2626')
-                                });
-                            }
+                function createParticle() {
+                    const vx = mouse.x - lastMouse.x;
+                    const vy = mouse.y - lastMouse.y;
+                    if (Math.hypot(vx, vy) > 2) {
+                        for(let i=0; i<2; i++){
+                            particles.push({
+                                x: mouse.x, y: mouse.y,
+                                vx: -vx * 1.5 + (Math.random() - 0.5) * 8,
+                                vy: -vy * 1.5 + (Math.random() - 0.5) * 8,
+                                life: 1.0, size: Math.random() * 20 + 10,
+                                color: Math.random() > 0.7 ? '#fff' : (Math.random() > 0.4 ? '#f59e0b' : '#dc2626')
+                            });
                         }
-                        lastMouse.x = mouse.x;
-                        lastMouse.y = mouse.y;
                     }
+                    lastMouse.x = mouse.x; lastMouse.y = mouse.y;
+                }
 
-                    function update() {
-                        createParticle();
-                        const engine = document.getElementById('flame-engine');
-                        engine.innerHTML = '';
-                        
-                        for (let i = particles.length - 1; i >= 0; i--) {
-                            const p = particles[i];
-                            p.x += p.vx;
-                            p.y += p.vy;
-                            p.life -= 0.04;
-                            p.size *= 0.95;
-
-                            if (p.life <= 0 || p.size < 1) {
-                                particles.splice(i, 1);
-                                continue;
-                            }
-
-                            const el = document.createElement('div');
-                            el.style.position = 'absolute';
-                            el.style.left = p.x + 'px';
-                            el.style.top = p.y + 'px';
-                            el.style.width = p.size + 'px';
-                            el.style.height = p.size + 'px';
-                            el.style.backgroundColor = p.color;
-                            el.style.borderRadius = '50%';
-                            el.style.opacity = p.life;
-                            el.style.filter = 'blur(4px)';
-                            el.style.transform = 'translate(-50%, -50%)';
-                            el.style.boxShadow = `0 0 15px ${p.color}`;
-                            el.style.mixBlendMode = 'screen';
-                            engine.appendChild(el);
-                        }
-                        requestAnimationFrame(update);
+                function update() {
+                    createParticle();
+                    const engine = document.getElementById('flame-engine');
+                    if(engine) engine.innerHTML = '';
+                    
+                    for (let i = particles.length - 1; i >= 0; i--) {
+                        const p = particles[i];
+                        p.x += p.vx; p.y += p.vy; p.life -= 0.04; p.size *= 0.95;
+                        if (p.life <= 0 || p.size < 1) { particles.splice(i, 1); continue; }
+                        const el = document.createElement('div');
+                        el.style.position = 'absolute'; el.style.left = p.x + 'px'; el.style.top = p.y + 'px';
+                        el.style.width = p.size + 'px'; el.style.height = p.size + 'px';
+                        el.style.backgroundColor = p.color; el.style.borderRadius = '50%';
+                        el.style.opacity = p.life; el.style.filter = 'blur(4px)';
+                        el.style.transform = 'translate(-50%, -50%)';
+                        el.style.boxShadow = '0 0 15px ' + p.color; el.style.mixBlendMode = 'screen';
+                        if(engine) engine.appendChild(el);
                     }
-                    update();
-                }, 100);
+                    requestAnimationFrame(update);
+                }
+                update();
             }
-        </script>
+        ">
         """,
         unsafe_allow_html=True
     )

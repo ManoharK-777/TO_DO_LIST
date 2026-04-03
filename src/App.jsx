@@ -74,15 +74,15 @@ const App = () => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const StatCard = ({ title, value, icon: Icon, color, delay }) => (
+  const StatCard = ({ title, value, icon: Icon, boxColor, iconColor, delay }) => (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
       className="glass-card p-5 rounded-3xl flex-1 flex flex-col gap-3 shadow-premium hover:shadow-floating transition-all duration-500 group border border-white/[0.04] neon-border-hover interactive-card"
     >
-      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${color} bg-opacity-15 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-        <Icon className={`w-5 h-5 ${color.replace('bg-', 'text-')}`} />
+      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${boxColor} group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+        <Icon className={`w-5 h-5 ${iconColor}`} />
       </div>
       <div>
         <p className="text-slate-500 text-[10px] font-black tracking-[0.3em] uppercase mb-0.5">{title}</p>
@@ -169,9 +169,9 @@ const App = () => {
 
         {/* Dash/Stats Matrix */}
         <div className="flex flex-col sm:flex-row gap-5 mb-14">
-          <StatCard title="Active Units" value={stats.total} icon={LayoutGrid} color="bg-crimson-500" delay={0.2} />
-          <StatCard title="Success State" value={stats.completed} icon={Activity} color="bg-rose-500" delay={0.3} />
-          <StatCard title="Pending Logic" value={stats.pending} icon={Zap} color="bg-amber-500" delay={0.4} />
+          <StatCard title="Active Units" value={stats.total} icon={LayoutGrid} boxColor="bg-crimson-500/15" iconColor="text-crimson-400" delay={0.2} />
+          <StatCard title="Success State" value={stats.completed} icon={Activity} boxColor="bg-rose-500/15" iconColor="text-rose-400" delay={0.3} />
+          <StatCard title="Pending Logic" value={stats.pending} icon={Zap} boxColor="bg-amber-500/15" iconColor="text-amber-400" delay={0.4} />
         </div>
 
         {/* Action Matrix */}

@@ -1,4 +1,3 @@
 streamlit
 pandas
-lucide-icons
 st-annotated-text

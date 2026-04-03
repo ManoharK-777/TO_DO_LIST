@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* Premium Obsidian Typography already in index.html */
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Poppins', system-ui, sans-serif;
+  
+  --color-obsidian-950: #050505;
+  --color-obsidian-900: #0A0A0A;
+  --color-obsidian-800: #121212;
+  
+  --color-crimson-400: #EF4444;
+  --color-crimson-500: #DC2626;
+  --color-crimson-600: #B91C1C;
+  --color-crimson-700: #991B1B;
+  --color-crimson-800: #7F1D1D;
+  --color-crimson-900: #450A0A;
+  
+  --color-rose-gold: #E11D48;
+  --color-neon-orange: #F59E0B;
+  --color-neon-yellow: #FACC15;
+  
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  --animate-molten: molten-pulse 10s infinite alternate ease-in-out;
+  --animate-ember: ember-flicker 0.8s forwards ease-out;
+
+  @keyframes molten-pulse {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+    50% { transform: translate(2% , 2%) scale(1.1); opacity: 0.3; }
+  }
+
+  @keyframes ember-flicker {
+    0% { transform: scale(1) translateY(0); opacity: 1; }
+    100% { transform: scale(0) translateY(-60px); opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+     cursor: none !important;
+  }
+  
+  body {
+    @apply bg-obsidian-950 text-slate-100 font-sans overflow-x-hidden min-h-screen selection:bg-crimson-500/30 selection:text-white cursor-none;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tighter;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-obsidian-800 rounded-full hover:bg-crimson-900 transition-colors;
+  }
+}
+
+/* Futuristic Neon UI System */
+.glass {
+  @apply bg-white/[0.01] backdrop-blur-md border border-white/[0.04] shadow-xl;
+}
+
+.glass-card {
+  @apply bg-white/[0.02] backdrop-blur-3xl border border-white/[0.06] shadow-2xl;
+}
+
+.neon-border {
+  @apply border-crimson-500/30 shadow-[0_0_15px_-3px_rgba(220,38,38,0.3)];
+}
+
+.neon-border-hover {
+  @apply hover:border-crimson-500/50 hover:shadow-[0_0_20px_-2px_rgba(220,38,38,0.4)] transition-all duration-500;
+}
+
+.shadow-premium {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.shadow-floating {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.5), 
+    0 10px 10px -5px rgba(220, 38, 38, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.blur-blob {
+  @apply absolute rounded-full filter blur-[140px] opacity-25 pointer-events-none;
+  animation: molten-pulse 10s infinite alternate ease-in-out;
+}
+
+.noise-overlay {
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.05;
+  filter: contrast(120%);
+  pointer-events: none;
+}
+
+.hero-gradient {
+  @apply bg-gradient-to-br from-white via-red-100 to-crimson-600 bg-clip-text text-transparent;
+}
+
+.indicator-pending {
+  box-shadow: 0 0 20px -5px rgba(220, 38, 38, 0.4);
+}
+
+.indicator-success {
+  box-shadow: 0 0 20px -5px rgba(225, 29, 72, 0.4);
+}
+
+/* Interactive Cursor Overrides */
+a, button, input, textarea, [role="button"] {
+  cursor: none !important;
+}

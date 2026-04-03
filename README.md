@@ -1,33 +1,16 @@
-# Smart Todo AI – Obsidian Crimson Protocol 🔥🛡️
+# React + Vite
 
-A high-fidelity, high-intensity task management system designed with a futuristic "Obsidian Crimson" aesthetic. This is not just a to-do list; it's a visual orchestration engine for professional productivity.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🏮 The Experience (Top 1% UI/UX)
+Currently, two official plugins are available:
 
-- **🔥 Futuristic Flamethrower Cursor**: A high-performance, RAF-powered particle stream that trails your movement with liquid-fire physics (Custom JS injected).
-- **🌀 Neural Intensity Logic**: The cursor reacts to UI elements, glowing brighter and "bursting" when hovering over buttons or cards.
-- **🌋 Obsidian Crimson Theme**: Deep black backgrounds paired with molten red gradients, neon accents, and rose-gold success indicators.
-- **✨ High-Tech Animations**: Smooth expands, and "Liquid Fire" transitions running alongside Streamlit's reactive updates.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## 🛠️ Engineered With (Tech Stack)
+## React Compiler
 
-The system is built using an elite, modern technology stack, fully migrated to Python for maximum AI-readiness and backend integration:
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- **🐍 Backend/Frontend**: [Streamlit](https://streamlit.io/) (Pure Python web framework)
-- **🎨 Styling**: Custom CSS injection (Obsidian & Crimson design tokens)
-- **🎬 Animations**: High-fidelity DOM manipulation via injected JavaScript
-- **🗃️ Storage**: Lightweight local JSON precision persistence
+## Expanding the ESLint configuration
 
-## 🚀 Deployment Protocol
-
-The project is fully configured for **Streamlit Community Cloud** deployment.
-
-1.  **Push to GitHub**: Make sure `app.py` and `requirements.txt` are at the root of your repo.
-2.  **Deploy on Streamlit Cloud**: Sign up at [share.streamlit.io](https://share.streamlit.io/).
-3.  **New App**: Click "New app", select your GitHub repository and branch.
-4.  **Main File Path**: `app.py`.
-5.  **Deploy**: Click "Deploy" and watch your Obsidian Protocol go live!
-
----
-
-Orchestrated by **Manohar K** | Automated Productivity Systems 🧨
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

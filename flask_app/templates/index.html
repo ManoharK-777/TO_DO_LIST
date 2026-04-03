@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Todo AI – Premium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet"/>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 font-sans antialiased overflow-x-hidden">
+
+  <!-- Flame Cursor Canvas -->
+  <canvas id="flame-canvas"></canvas>
+
+  <!-- Ambient Background Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="relative z-10 min-h-screen">
+    <!-- ───── HERO ───── -->
+    <header class="pt-16 pb-10 text-center px-6">
+      <div class="badge inline-flex items-center gap-2 mb-5">
+        <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+        <span>AI-Powered Task Intelligence</span>
+      </div>
+      <h1 class="hero-title">Smart <span class="gradient-text">Todo AI</span></h1>
+      <p class="mt-4 text-slate-400 text-lg max-w-md mx-auto leading-relaxed">
+        Organize brilliance. Ship faster. Stay in your flow state.
+      </p>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-5 pb-24 space-y-8">
+
+      <!-- ───── INPUT ───── -->
+      <section class="glass-card p-6">
+        <form id="task-form" class="flex gap-3">
+          <div class="relative flex-1">
+            <input
+              id="task-input"
+              type="text"
+              placeholder="What's your next big move?"
+              autocomplete="off"
+              class="task-input w-full"
+            />
+            <div class="input-glow"></div>
+          </div>
+          <button type="submit" class="add-btn" id="add-btn">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Task
+          </button>
+        </form>
+      </section>
+
+      <!-- ───── KPI CARDS ───── -->
+      <section class="grid grid-cols-3 gap-4">
+        <div class="kpi-card kpi-blue">
+          <div class="kpi-icon-wrap kpi-icon-blue">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <p class="kpi-label">Total Tasks</p>
+          <p class="kpi-value" id="kpi-total">0</p>
+        </div>
+        <div class="kpi-card kpi-green">
+          <div class="kpi-icon-wrap kpi-icon-green">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="kpi-label">Completed</p>
+          <p class="kpi-value" id="kpi-done">0</p>
+        </div>
+        <div class="kpi-card kpi-orange">
+          <div class="kpi-icon-wrap kpi-icon-orange">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <p class="kpi-label">Pending</p>
+          <p class="kpi-value" id="kpi-pending">0</p>
+        </div>
+      </section>
+
+      <!-- ───── FILTER TABS ───── -->
+      <section class="flex gap-2 p-1.5 glass-card rounded-2xl">
+        <button class="filter-tab active" data-filter="all" id="tab-all">All</button>
+        <button class="filter-tab" data-filter="pending" id="tab-pending">Pending</button>
+        <button class="filter-tab" data-filter="completed" id="tab-completed">Completed</button>
+      </section>
+
+      <!-- ───── TASK LIST ───── -->
+      <section id="task-list" class="space-y-3"></section>
+
+      <!-- ───── EMPTY STATE ───── -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-6xl mb-5 animate-bounce">🚀</div>
+        <p class="text-slate-400 text-lg font-medium">No tasks yet.</p>
+        <p class="text-slate-600 text-sm mt-1">Add your first task to get started!</p>
+      </div>
+
+    </main>
+
+    <!-- ───── FOOTER ───── -->
+    <footer class="text-center pb-10">
+      <p class="text-slate-600 text-sm">
+        🚀 Built by <span class="text-violet-400 font-semibold">Manohar K</span> | Python Developer
+      </p>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
